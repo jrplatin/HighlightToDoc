@@ -2,7 +2,7 @@
     "name": "HighlightToDoc",
     "version": "2",
     "description": "Highlight text and copy directly into a Google Doc!",
-    "permissions": ["tabs","contextMenus","identity", "contextMenus", "https://www.googleapis.com/*"],
+    "permissions": ["tabs","contextMenus","identity", "https://www.googleapis.com/*"],
     "oauth2": {
       "client_id": "515940794099-so1vc9t03pf0t1rdnf6lr80krp6ahisq.apps.googleusercontent.com",
       "scopes": [
@@ -18,17 +18,17 @@
     "page_action": {
       "default_popup": "background.html",
       "default_icon": {
-        "16": "images/get_started16.png",
-        "32": "images/get_started32.png",
-        "48": "images/get_started48.png",
-        "128": "images/get_started128.png"
+        "16": "images/logo16.png",
+        "32": "images/logo32.png",
+        "48": "images/logo48.png",
+        "128":"images/logo129.png"
       }
     },
     "icons": {
-      "16": "images/get_started16.png",
-      "32": "images/get_started32.png",
-      "48": "images/get_started48.png",
-      "128": "images/get_started128.png"
+      "16": "images/logo16.png",
+      "32": "images/logo32.png",
+      "48": "images/logo48.png",
+      "128":"images/logo129.png"
     },
     "manifest_version": 2,
     "content_security_policy": "script-src 'self' 'unsafe-eval' https://apis.google.com/; object-src 'self'"
