@@ -40,7 +40,6 @@ listSheets = function () {
     fetch('https://www.googleapis.com/drive/v3/files' + params, init)
       .then((response) => response.json())
       .then(function (data) {
-        console.log(data);
         for (var key in data.files) {
           if (key < 20) {
             var obj = data.files[key];
@@ -107,11 +106,17 @@ takeNote = function (word) {
       fetch('https://sheets.googleapis.com/v4/spreadsheets/' + spreadsheetId + '/values/Sheet1!A1:D', getRequest)
         .then((response) => response.json())
         .then(function (data) {
-          rowNumber = parseInt(data.values.length) + 1;
+          if (data.values === undefined) {
+            rowNumber = 1;
+          } else {
+            console.log(data.values);
+            rowNumber = parseInt(data.values.length) + 1;
+
+          }
         }).then(function () {
 
           var params;
-          if (rowNumber === 0) {
+          if (rowNumber === 1) {
             params = {
               'values': [
                 ['Date', 'Note'],
@@ -147,6 +152,15 @@ takeNote = function (word) {
 
 listSheets();
 
+
+
+chrome.contextMenus.create({
+  title: "Take Note",
+  contexts: ["selection"],
+  onclick: takeNote
+})
+
+
 chrome.contextMenus.create({
   title: "Change Note Sheet",
   id: "linkNotebook",
@@ -159,15 +173,6 @@ chrome.contextMenus.create({
   contexts: ["selection"],
   onclick: createNewSheet
 });
-
-
-chrome.contextMenus.create({
-  title: "Take Note",
-  contexts: ["selection"],
-  onclick: takeNote
-})
-
-
 
 
 
