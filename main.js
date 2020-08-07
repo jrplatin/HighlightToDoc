@@ -27,7 +27,7 @@ changeSpreadSheetId = function (word) {
 
 listSheets = function () {
   chrome.identity.getAuthToken({ interactive: true }, function (token) {
-    var query = "mimeType='application/vnd.google-apps.spreadsheet'";
+    var query = "mimeType='application/vnd.google-apps.spreadsheet' and trashed = false";
 
     var params = `?q=${encodeURIComponent(query)}`;
     let init = {
@@ -40,6 +40,7 @@ listSheets = function () {
     fetch('https://www.googleapis.com/drive/v3/files' + params, init)
       .then((response) => response.json())
       .then(function (data) {
+        console.log(data);
         for (var key in data.files) {
           if (key < 20) {
             var obj = data.files[key];
